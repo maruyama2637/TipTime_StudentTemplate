@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -23,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tiptime.ui.theme.TipTimeTheme
 import java.text.NumberFormat
+import androidx.compose.material3.TextField
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +48,7 @@ fun TipTimeLayout() {
             modifier = Modifier
                 .statusBarsPadding()
                 .padding(horizontal = 40.dp)
+                .verticalScroll(rememberScrollState())
                 .safeDrawingPadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -63,7 +67,15 @@ fun TipTimeLayout() {
         }
     }
 }
-
+@Composable
+fun EditNumberField(modifier: Modifier = Modifier) {
+    var amountInput = "0"
+    TextField(
+        value = amountInput,
+        onValueChange = {},
+        modifier = modifier
+    )
+}
 
 /**
  * Calculates the tip based on the user input and format the tip amount
